@@ -1,0 +1,1 @@
+<a class="text-teal-light" href="/">Go home</a>
