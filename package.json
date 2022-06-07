@@ -23,6 +23,11 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"dotenv": "^16.0.1"
+		"dompurify": "^2.3.8",
+		"dotenv": "^16.0.1",
+		"mongoose": "^6.3.5",
+		"svelte-meta-tags": "^2.6.1",
+		"url": "^0.11.0",
+		"validate-objectid": "^0.2.0"
 	}
 }

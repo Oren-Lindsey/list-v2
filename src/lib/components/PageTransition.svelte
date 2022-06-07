@@ -15,4 +15,9 @@
   <!--
     in:fly={{ x: 5, duration: 200, delay: 500 }}
     out:fly={{ x: -5, duration: 200 }}
+
+    or 
+
+    in:fade={{ duration: 100, delay: 500 }}
+    out:fade={{ duration: 100 }}
   -->

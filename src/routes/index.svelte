@@ -1,1 +1,7 @@
-<p>Visit <a class="text-teal-light" href="/list">the list</a></p>
+<script>
+    import Button from "../lib/components/Button.svelte";
+</script>
+<h1 class="text-3xl mb-4">
+    Oren's List
+</h1>
+<Button type="link" href="/list">Visit the list</Button>
