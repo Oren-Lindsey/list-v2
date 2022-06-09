@@ -17,8 +17,9 @@ async function addItem(data) {
     await mongoose.connect(db_url)
     try {
         const imgUrl = new URL(data.img)
-        if (!allowedHrefs.includes(imgUrl.hostname)) {
+        if (!allowedHrefs.includes(imgUrl.hostname) && !allowedHrefs.includes('*')) {
             data.img = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'
+            //to stop pesky image xss, if you want you can add * to the array above and it'll let anything through
         }
     } catch (error) {
         data.img = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'

@@ -9,6 +9,8 @@ module.exports = {
       'black': '#000000',
       'darkgrey': '#808080',
       'white': '#ffffff',
+      'extradarkgrey': '#191919',
+      'reallydarkgrey': '#0f0f0f'
     }
   },
   plugins: [],

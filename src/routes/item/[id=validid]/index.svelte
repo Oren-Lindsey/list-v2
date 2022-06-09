@@ -51,19 +51,19 @@
 </script>
 <h1 class="text-3xl text-theme">{item.name}</h1>
 <img src={item.img} alt={item.name} class="transition ease-in-out delay-50 hover:shadow-xl max-w-lg" />
-<p class="text-lg pt-2">{item.description}</p>
+<p class="text-lg pt-2 text-black dark:text-grey">{item.description}</p>
 <i class="text-darkgrey">${item.price}</i>
 {#if item.size !== ""}
-<p class="underline decoration-solid decoration-theme decoration-2">Size: {item.size}</p>
+<p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-grey">Size: {item.size}</p>
 {:else}
-<p class="underline decoration-solid decoration-theme decoration-2">Size: N/A</p>
+<p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-grey">Size: N/A</p>
 {/if}
 <div class="my-2">
     <Button type="link" href={item.link}>Link to product page</Button>
 </div>
 <form class="mb-0" id={item._id} on:submit|preventDefault={updateItem}>
     <input type="hidden" name="id" value={item._id} />
-    <label for="checkbox">Ordered:</label>
+    <label for="checkbox" class="text-black dark:text-grey">Ordered:</label>
     <input name={`checkbox-${item._id}`} id={`checkbox-${item._id}`} type="checkbox" checked={item.checked} class="accent-theme mr-1" />
     <Button type="submit" href="">Update</Button>
     <i class="text-darkgrey" id={`msg-${item._id}`}></i>

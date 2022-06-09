@@ -1,4 +1,5 @@
 <script>
+    import { MetaTags } from "svelte-meta-tags";
     import Button from "../../lib/components/Button.svelte";
     import { page } from '$app/stores'
     const sort = $page.url.searchParams.get('sort')
@@ -49,17 +50,17 @@
         return json
     }
 </script>
-<h1 class="text-3xl">Oren's wishlist</h1>
+<h1 class="text-3xl dark:text-white text-black">Oren's list</h1>
 {#if items.length > 1}
-<i class="text-darkgrey">{items.length} items</i>
+<i class="text-darkgrey dark:text-grey">{items.length} items</i>
 {:else if items.length == 1}
-<i class="text-darkgrey">1 item</i>
+<i class="text-darkgrey dark:text-grey">1 item</i>
 {:else if items.length == 0}
-<i class="text-darkgrey">no items yet :(</i>
+<i class="text-darkgrey dark:text-grey">no items yet :(</i>
 {/if}
 <form>
-    <label for="sort">Sort by:</label>
-    <select name="sort" id="sort">
+    <label for="sort" class="text-black dark:text-grey">Sort by:</label>
+    <select name="sort" id="sort" class="dark:bg-grey">
         {#if sort == null || 'all'}
         <option value="all" selected>All</option>
         {:else}
@@ -91,30 +92,43 @@
 <br>
 <ul class="mx-1 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
     {#each items as item}
-            <li class="m-4"> 
-                <div class="bg-grey border border-black pb-5 px-5 rounded-md w-full min-w-full break-words">
-                    <img src={item.img} alt={item.name} class="object-scale-down rounded-b-md rounded-t-none w-full rounded-md" />
-                    <h2 class="text-xl text-theme pt-2">{item.name}</h2>
-                    <p>{item.description}</p>
-                    <i class="text-darkgrey">${item.price}</i>
+            <li class="m-4 bg-transparent"> 
+                <div class="bg-grey dark:bg-reallydarkgrey border border-black dark:border-grey pb-5 px-5 rounded-md w-full min-w-full break-words">
+                    <img src={item.img} alt={item.name} class="transition ease-in-out delay-50 object-scale-down rounded-b-md rounded-t-none w-full rounded-md hover:shadow-xl p-0 m-0" />
+                    <h2 class="text-xl text-theme pt-2">{item.name} <a class="text-darkgrey hover:underline" href={`/item/${item._id}`}>#</a></h2>
+                    <p class="text-black dark:text-white">{item.description}</p>
+                    <i class="text-darkgrey dark:text-grey">${item.price}</i>
                     {#if item.size !== ""}
-                    <p class="underline decoration-solid decoration-theme decoration-2">Size: {item.size}</p>
+                    <p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-white">Size: {item.size}</p>
                     {:else}
-                    <p class="underline decoration-solid decoration-theme decoration-2">Size: N/A</p>
+                    <p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-white">Size: N/A</p>
                     {/if}
                     <div class="my-2">
                         <Button type="link" href={item.link}>Link to product</Button>
                     </div>
                     <form class="mb-0" id={item._id} on:submit|preventDefault={updateItem}>
                         <input type="hidden" name="id" value={item._id} />
-                        <label for="checkbox">Ordered:</label>
+                        <label for="checkbox" class="text-black dark:text-white">Claimed:</label>
                         <input name={`checkbox-${item._id}`} id={`checkbox-${item._id}`} type="checkbox" checked={item.checked} class="accent-theme mr-1" />
                         <Button type="submit" href="">Update</Button>
                         <i class="text-darkgrey" id={`msg-${item._id}`}></i>
                     </form>
-                    <br>
-                    <Button type="link" href={`/item/${item._id}`}>Link to this item</Button>
                 </div>
             </li>
     {/each}
 </ul>
+<MetaTags
+  title={`Oren's list`}
+  description={`Oren's wishlist`}
+  openGraph={{
+    url: $page.url,
+    title: `Oren's list`,
+    description: `Oren's wishlist`,
+    site_name: 'Oren\'s list'
+  }}
+  twitter={{
+    cardType: 'summary_large_image',
+    title: `Oren's list`,
+    description: 'Oren\'s wishlist',
+  }}
+/>
