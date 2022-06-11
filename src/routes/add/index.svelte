@@ -53,7 +53,7 @@
     <input type="text" name="img" id="img" placeholder="image link" required class="border-darkgrey border-2 bg-grey rounded-md p-1 pl-2 mb-2 dark:bg-extradarkgrey dark:text-grey dark:border-grey" />
     <label class="text-darkgrey my-2 dark:text-grey" for="size">Size (optional):</label>
     <input type="text" name="size" id="size" placeholder="size" class="border-darkgrey border-2 bg-grey rounded-md p-1 pl-2 mb-2 dark:bg-extradarkgrey dark:text-grey dark:border-grey" />
-    <label class="text-darkgrey my-2 dark:text-grey" for="size">Ranking (1-10):</label>
+    <label class="text-darkgrey my-2 dark:text-grey" for="size">Priority (1-10):</label>
     <input type="number" min="1" max="10" name="ranking" id="ranking" required class="border-darkgrey border-2 bg-grey rounded-md p-1 pl-2 mb-2 dark:bg-extradarkgrey dark:text-grey dark:border-grey" />
     <Button type="submit" href="">Add</Button> <p class="text-darkgrey pt-2 dark:text-grey">{msg}</p>
 </form>

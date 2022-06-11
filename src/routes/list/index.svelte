@@ -69,7 +69,7 @@
         }, 300)
     }
 </script>
-<h1 class="text-3xl dark:text-white text-black">Oren's list</h1>
+<h1 class="text-3xl dark:text-white text-black">Oren's List</h1>
 {#if items.length > 1}
 <i class="text-darkgrey dark:text-grey">{items.length} items</i>
 {:else if items.length == 1}
@@ -86,14 +86,14 @@
         <option value="all">All</option>
         {/if}
         {#if sort == 'ranking-desc'}
-        <option value="ranking-desc" selected>Ranking (high to low)</option>
+        <option value="ranking-desc" selected>Priority (high to low)</option>
         {:else}
-        <option value="ranking-desc">Ranking (high to low)</option>
+        <option value="ranking-desc">Priority (high to low)</option>
         {/if}
         {#if sort == 'ranking-asc'}
-        <option value="ranking-asc" selected>Ranking (low to high)</option>
+        <option value="ranking-asc" selected>Priority (low to high)</option>
         {:else}
-        <option value="ranking-asc">Ranking (low to high)</option>
+        <option value="ranking-asc">Priority (low to high)</option>
         {/if}
         {#if sort == 'asc'}
         <option value="asc" selected>Price Low to High</option>
@@ -132,7 +132,7 @@
                     {:else}
                     <p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-white">Size: N/A</p>
                     {/if}
-                    <p class="text-black dark:text-white">Ranking: {item.ranking}/10</p>
+                    <p class="text-black dark:text-white">Priority: {item.ranking}/10</p>
                     <div class="my-2">
                         <Button type="link" href={item.link}>Link to product</Button>
                     </div>
