@@ -50,7 +50,7 @@
     }
 </script>
 <h1 class="text-3xl text-theme">{item.name}</h1>
-<img src={item.img} alt={item.name} class="transition ease-in-out delay-50 hover:shadow-xl max-w-lg" />
+<img src={item.img} alt={item.name} class="max-w-lg" />
 <p class="text-lg pt-2 text-black dark:text-grey">{item.description}</p>
 <i class="text-darkgrey">${item.price}</i>
 {#if item.size !== ""}

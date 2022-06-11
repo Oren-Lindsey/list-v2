@@ -8,6 +8,7 @@ const itemSchema = new mongoose.Schema({
     link: String,
     checked: Boolean,
     size: String,
+    ranking: Number
 });
 const Item = mongoose.model("Item", itemSchema);
 export { Item };

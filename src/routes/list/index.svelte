@@ -4,6 +4,7 @@
     import { page } from '$app/stores'
     const sort = $page.url.searchParams.get('sort')
     export let items
+    export let loggedIn
     async function updateItem(e) {
         var msg = document.getElementById(`msg-${e.target.id.value}`)
         msg.innerHTML = 'updating...'
@@ -49,6 +50,24 @@
         const json = await res.json()
         return json
     }
+    async function deleteItem(e) {
+        const id = await e.target.id
+        const msg = document.getElementById(`del-${id}`)
+        msg.innerText = 'deleting...'
+        const res = await fetch(`/item/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': document.cookie,
+                'Accept': 'application/json'
+            }
+        })
+        const json = await res.json()
+        msg.innerText = `deleted`
+        setTimeout(() => {
+            msg.innerText = ""
+            window.location.reload()
+        }, 300)
+    }
 </script>
 <h1 class="text-3xl dark:text-white text-black">Oren's list</h1>
 {#if items.length > 1}
@@ -65,6 +84,16 @@
         <option value="all" selected>All</option>
         {:else}
         <option value="all">All</option>
+        {/if}
+        {#if sort == 'ranking-desc'}
+        <option value="ranking-desc" selected>Ranking (high to low)</option>
+        {:else}
+        <option value="ranking-desc">Ranking (high to low)</option>
+        {/if}
+        {#if sort == 'ranking-asc'}
+        <option value="ranking-asc" selected>Ranking (low to high)</option>
+        {:else}
+        <option value="ranking-asc">Ranking (low to high)</option>
         {/if}
         {#if sort == 'asc'}
         <option value="asc" selected>Price Low to High</option>
@@ -93,8 +122,8 @@
 <ul class="mx-1 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
     {#each items as item}
             <li class="m-4 bg-transparent"> 
-                <div class="bg-grey dark:bg-reallydarkgrey border border-black dark:border-grey pb-5 px-5 rounded-md w-full min-w-full break-words">
-                    <img src={item.img} alt={item.name} class="transition ease-in-out delay-50 object-scale-down rounded-b-md rounded-t-none w-full rounded-md hover:shadow-xl p-0 m-0" />
+                <div class="bg-grey dark:bg-reallydarkgrey border border-darkgrey dark:border-darkgrey pb-5 px-5 rounded-md w-full min-w-full break-words">
+                    <img src={item.img} alt={item.name} class="object-scale-down rounded-b-md rounded-t-none w-full rounded-md p-0 m-0" />
                     <h2 class="text-xl text-theme pt-2">{item.name} <a class="text-darkgrey hover:underline" href={`/item/${item._id}`}>#</a></h2>
                     <p class="text-black dark:text-white">{item.description}</p>
                     <i class="text-darkgrey dark:text-grey">${item.price}</i>
@@ -103,6 +132,7 @@
                     {:else}
                     <p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-white">Size: N/A</p>
                     {/if}
+                    <p class="text-black dark:text-white">Ranking: {item.ranking}/10</p>
                     <div class="my-2">
                         <Button type="link" href={item.link}>Link to product</Button>
                     </div>
@@ -113,6 +143,14 @@
                         <Button type="submit" href="">Update</Button>
                         <i class="text-darkgrey" id={`msg-${item._id}`}></i>
                     </form>
+                    {#if loggedIn}
+                        <form on:submit|preventDefault={deleteItem} id={item._id}>
+                            <div class="mt-2">
+                                <input type="hidden" value={item._id} />
+                                <Button href="" type="submit">Delete Item</Button> <i class="text-darkgrey dark:text-grey" id={`del-${item._id}`}></i>
+                            </div>
+                        </form>
+                    {/if}
                 </div>
             </li>
     {/each}
