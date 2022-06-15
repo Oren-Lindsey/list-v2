@@ -134,7 +134,9 @@
                     {/if}
                     <p class="text-black dark:text-white">Priority: {item.ranking}/10</p>
                     <div class="my-2">
-                        <Button type="link" href={item.link}>Link to product</Button>
+                        {#if item.link.length > 0}
+                            <Button type="link" href={item.link[0].url}>{item.link[0].name}</Button> <a class="inline text-darkgrey dark:text-grey hover:text-black transition ease-in-out delay-75 dark:hover:text-white" href="/item/{item._id}">+{item.link.length - 1} more links...</a>
+                        {/if}
                     </div>
                     <form class="mb-0" id={item._id} on:submit|preventDefault={updateItem}>
                         <input type="hidden" name="id" value={item._id} />

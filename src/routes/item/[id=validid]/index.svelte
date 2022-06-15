@@ -58,8 +58,19 @@
 {:else}
 <p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-grey">Size: N/A</p>
 {/if}
-<div class="my-2">
-    <Button type="link" href={item.link}>Link to product page</Button>
+<div class="mt-4 grid place-items-center">
+    <b>Links:</b>
+</div>
+<div class="inline mt-2 mb-4">
+{#if item.link.length > 0}
+{#each item.link as link}
+    <div class="m-2 inline">
+        <Button type="link" href={link.url}>{link.name}</Button>
+    </div>
+{/each}
+{:else}
+<i>no links :(</i>
+{/if}
 </div>
 <form class="mb-0" id={item._id} on:submit|preventDefault={updateItem}>
     <input type="hidden" name="id" value={item._id} />

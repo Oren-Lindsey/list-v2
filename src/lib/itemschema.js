@@ -5,7 +5,7 @@ const itemSchema = new mongoose.Schema({
     description: String,
     img: String,
     price: Number,
-    link: String,
+    link: Array,
     checked: Boolean,
     size: String,
     ranking: Number

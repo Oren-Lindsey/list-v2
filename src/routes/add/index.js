@@ -6,7 +6,6 @@ import mongoose from 'mongoose'
 const db_url = process.env["DB_URL"]
 const adminPassword = process.env['ADMIN_PASSWORD']
 const allowedHrefs = ['u.cubeupload.com', 'i.imgbb.com', 'm.media-amazon.com']
-const allowedProtocols = ['http', 'https']
 import 'url/URL'
 import { Item } from '../../lib/itemschema'
 import { Password } from '../../lib/passwordschema'
@@ -70,9 +69,6 @@ async function addItem(data) {
         }
     } catch (error) {
         data.img = 'https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg'
-    }
-    if (!allowedProtocols.includes(data.link.split(':')[0])) {
-        data.link = 'about:blank'
     }
     const item = new Item({
         name: data.name,
