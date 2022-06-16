@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import * as cookie from 'cookie'
 const saltRounds = 10;
 const adminPassword = process.env['ADMIN_PASSWORD']

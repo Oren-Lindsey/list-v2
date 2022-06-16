@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import * as cookie from 'cookie'
 const saltRounds = 10;
 import mongoose from 'mongoose'
