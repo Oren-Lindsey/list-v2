@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 const db_url = process.env["DB_URL"]
 const adminPassword = process.env['ADMIN_PASSWORD']
 const allowedHrefs = ['u.cubeupload.com', 'i.imgbb.com', 'm.media-amazon.com']
-import 'url/URL'
+import 'url/url'
 import { Item } from '../../lib/itemschema'
 import { Password } from '../../lib/passwordschema'
 /** @type {import('./__types/[id]').RequestHandler} */
