@@ -85,25 +85,25 @@
         {:else}
         <option value="all">All</option>
         {/if}
-        {#if sort == 'ranking-desc'}
-        <option value="ranking-desc" selected>Priority (high to low)</option>
-        {:else}
-        <option value="ranking-desc">Priority (high to low)</option>
-        {/if}
         {#if sort == 'ranking-asc'}
-        <option value="ranking-asc" selected>Priority (low to high)</option>
+        <option value="ranking-asc" selected>Priority (Low to High)</option>
         {:else}
-        <option value="ranking-asc">Priority (low to high)</option>
+        <option value="ranking-asc">Priority (Low to High)</option>
+        {/if}
+        {#if sort == 'ranking-desc'}
+        <option value="ranking-desc" selected>Priority (High to Low)</option>
+        {:else}
+        <option value="ranking-desc">Priority (High to Low)</option>
         {/if}
         {#if sort == 'asc'}
-        <option value="asc" selected>Price Low to High</option>
+        <option value="asc" selected>Price (Low to High)</option>
         {:else}
-        <option value="asc">Price Low to High</option>
+        <option value="asc">Price (Low to High)</option>
         {/if}
         {#if sort == 'desc'}
-        <option value="desc" selected>Price High to Low</option>
+        <option value="desc" selected>Price (High to Low)</option>
         {:else}
-        <option value="desc">Price High to Low</option>
+        <option value="desc">Price (High to Low)</option>
         {/if}
         {#if sort == 'checked'}
         <option value="checked" selected>Claimed only</option>
