@@ -7,6 +7,7 @@
         document.cookie = `password=${password}; path=/list`
         window.location.href = '/add'
     }
+    //check if document.cookie is populated and if so redirect (on chance that it could be)
 </script>
 <h1 class="text-3xl pb-2 text-black dark:text-white">Login</h1>
 <form on:submit|preventDefault={getCookie} class="bg-grey dark:bg-reallydarkgrey grid place-items-center p-4 border border-black dark:border-grey rounded-md break-words w-lg max-w-lg">

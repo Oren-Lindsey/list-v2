@@ -19,9 +19,9 @@ export async function get(event) {
                 status: 301,
                 headers: {
                     Location: '/add',
-                    /*'Set-Cookie':  `password=${submitted}; path=/add`,
+                    'Set-Cookie':  `password=${submitted}; path=/add`,
                     'Set-Cookie': `password=${submitted}; path=/login`,
-                    'Set-Cookie': `password=${submitted}; path=/list`*/
+                    'Set-Cookie': `password=${submitted}; path=/list`
                 }
             }
         } else {
