@@ -1,4 +1,4 @@
-import 'dotenv/config'
+/*import 'dotenv/config'
 import bcrypt from 'bcryptjs'
 import * as cookie from 'cookie'
 const saltRounds = 10;
@@ -7,7 +7,7 @@ const db_url = process.env["DB_URL"]
 const adminPassword = process.env['ADMIN_PASSWORD']
 import { Password } from '../../lib/passwordschema'
 /** @type {import('./__types/[id]').RequestHandler} */
-export async function get(event) {
+/*export async function get(event) {
     await genPassword(adminPassword)
     const cookieheader = await event.request.headers.get('cookie')
     const cookies = cookie.parse(cookieheader || '');
@@ -63,4 +63,4 @@ async function comparePassword(plaintext) {
         const valid = await bcrypt.compare(plaintext, password[0].hash)
         return valid
     }
-}
+}*/

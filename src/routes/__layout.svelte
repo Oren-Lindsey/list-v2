@@ -25,7 +25,7 @@
     </div>
 </nav>
 <PageTransition {url}>
-    <div class="grid place-items-center m-4 place-content-center">
+    <div class="grid place-items-center mx-2 my-4 place-content-center">
         <slot />
     </div>
 </PageTransition>

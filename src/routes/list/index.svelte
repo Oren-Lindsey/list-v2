@@ -121,7 +121,7 @@
 <br>
 <ul class="mx-1 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
     {#each items as item}
-            <li class="m-4 bg-transparent"> 
+            <li class="m-2 bg-transparent"> 
                 <div class="bg-grey dark:bg-reallydarkgrey border border-darkgrey dark:border-darkgrey pb-5 px-5 rounded-md w-full min-w-full break-words">
                     <img src={item.img} alt={item.name} class="object-scale-down rounded-b-md rounded-t-none w-full rounded-md p-0 m-0" />
                     <h2 class="text-xl text-theme pt-2">{item.name} <a class="text-darkgrey hover:underline" href={`/item/${item._id}`}>#</a></h2>

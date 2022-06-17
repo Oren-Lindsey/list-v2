@@ -50,7 +50,7 @@
     }
 </script>
 <h1 class="text-3xl text-theme">{item.name}</h1>
-<img src={item.img} alt={item.name} class="max-w-lg" />
+<img src={item.img} alt={item.name} class="sm:max-w-screen lg:max-w-lg mx-2" />
 <p class="text-lg pt-2 text-black dark:text-grey">{item.description}</p>
 <i class="text-darkgrey">${item.price}</i>
 {#if item.size !== ""}
@@ -61,10 +61,10 @@
 <div class="mt-4 grid place-items-center">
     <b>Links:</b>
 </div>
-<div class="inline mt-2 mb-4">
+<div class="mt-2 mb-4 mx-4 grid place-items-center">
 {#if item.link.length > 0}
 {#each item.link as link}
-    <div class="m-2 inline">
+    <div class="m-2">
         <Button type="link" href={link.url}>{link.name}</Button>
     </div>
 {/each}
@@ -74,7 +74,7 @@
 </div>
 <form class="mb-0" id={item._id} on:submit|preventDefault={updateItem}>
     <input type="hidden" name="id" value={item._id} />
-    <label for="checkbox" class="text-black dark:text-grey">Ordered:</label>
+    <label for="checkbox" class="text-black dark:text-grey">Claimed:</label>
     <input name={`checkbox-${item._id}`} id={`checkbox-${item._id}`} type="checkbox" checked={item.checked} class="accent-theme mr-1" />
     <Button type="submit" href="">Update</Button>
     <i class="text-darkgrey" id={`msg-${item._id}`}></i>
