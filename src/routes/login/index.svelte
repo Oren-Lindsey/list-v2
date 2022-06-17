@@ -5,7 +5,6 @@
         document.cookie = `password=${password}; path=/add`
         document.cookie = `password=${password}; path=/login`
         document.cookie = `password=${password}; path=/list`
-        document.cookie = `password=${password}`
         window.location.href = '/add'
     }
 </script>

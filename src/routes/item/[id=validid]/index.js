@@ -59,7 +59,7 @@ export async function del(event) {
 }
 async function checkIfItemExists(id) {
     await mongoose.connect(db_url)
-    const item = await Item.exists({ id: id })
+    const item = await Item.exists({ _id: id })
     if (item) {
         return true
     } else {
@@ -68,12 +68,12 @@ async function checkIfItemExists(id) {
 }
 async function getItem(id) {
     await mongoose.connect(db_url)
-    const item = await Item.findOne({ id: id })
+    const item = await Item.findOne({ _id: id })
     return item
 }
 async function deleteItem(id) {
     await mongoose.connect(db_url)
-    const item = await Item.findOneAndDelete({ id: id })
+    const item = await Item.findOneAndDelete({ _id: id })
     return item
 }
 async function genPassword(plaintext) {

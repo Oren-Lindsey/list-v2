@@ -13,7 +13,7 @@ export async function post(e) {
 }
 async function toggleItem(data) {
     await mongoose.connect(db_url)
-    const item = await Item.findOne({ id: data.id })
+    const item = await Item.findOne({ _id: data.id })
     item.checked = !item.checked
     await item.save()
     return item
