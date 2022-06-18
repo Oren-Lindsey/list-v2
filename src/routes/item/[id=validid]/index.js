@@ -9,19 +9,33 @@ import { Item } from '../../../lib/itemschema'
 import { Password } from '../../../lib/passwordschema'
 /** @type {import('./__types/[id]').RequestHandler} */
 export async function get(event) {
+    await genPassword(adminPassword)
+    const cookieheader = await event.request.headers.get('cookie')
+    const cookies = cookie.parse(cookieheader || '');
+    const submitted = cookies['password']
+    const valid = await checkLoggedIn(submitted)
     const id = await event.params.id
     const exists = await checkIfItemExists(id)
     if (exists) {
         const item = await getItem(id)
         return {
             body: {
-                item: item 
+                item: item,
+                loggedIn: valid 
             }
         }
     } else {
         return {
             status: 404
         }
+    }
+}
+async function checkLoggedIn(password) {
+    if (password !== undefined && password !== null) {
+        const result = await comparePassword(password)
+        return result
+    } else {
+        return false
     }
 }
 export async function del(event) {

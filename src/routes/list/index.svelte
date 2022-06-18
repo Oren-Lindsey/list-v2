@@ -4,7 +4,6 @@
     import { page } from '$app/stores'
     const sort = $page.url.searchParams.get('sort')
     export let items
-    export let loggedIn
     async function updateItem(e) {
         var msg = document.getElementById(`msg-${e.target.id.value}`)
         msg.innerHTML = 'updating...'
@@ -49,24 +48,6 @@
         })
         const json = await res.json()
         return json
-    }
-    async function deleteItem(e) {
-        const id = await e.target.id
-        const msg = document.getElementById(`del-${id}`)
-        msg.innerText = 'deleting...'
-        const res = await fetch(`/item/${id}/`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': document.cookie,
-                'Accept': 'application/json'
-            }
-        })
-        const json = await res.json()
-        msg.innerText = `deleted`
-        setTimeout(() => {
-            msg.innerText = ""
-            window.location.reload()
-        }, 300)
     }
 </script>
 <h1 class="text-3xl dark:text-white text-black">Oren's List</h1>
@@ -145,14 +126,6 @@
                         <Button type="submit" href="">Update</Button>
                         <i class="text-darkgrey" id={`msg-${item._id}`}></i>
                     </form>
-                    {#if loggedIn}
-                        <form on:submit|preventDefault={deleteItem} id={item._id}>
-                            <div class="mt-2">
-                                <input type="hidden" value={item._id} />
-                                <Button href="" type="submit">Delete Item</Button> <i class="text-darkgrey dark:text-grey" id={`del-${item._id}`}></i>
-                            </div>
-                        </form>
-                    {/if}
                 </div>
             </li>
     {/each}

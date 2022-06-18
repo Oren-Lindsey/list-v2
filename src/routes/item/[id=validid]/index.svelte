@@ -2,6 +2,7 @@
     import { MetaTags } from 'svelte-meta-tags';
     import { page } from '$app/stores';
     export let item
+    export let loggedIn
     import Button from '../../../lib/components/Button.svelte'
     async function updateItem(e) {
         var msg = document.getElementById(`msg-${e.target.id.value}`)
@@ -48,9 +49,27 @@
         const json = await res.json()
         return json
     }
+    async function deleteItem(e) {
+        const id = await e.target.id
+        const msg = document.getElementById(`del-${id}`)
+        msg.innerText = 'deleting...'
+        const res = await fetch(`/item/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': document.cookie,
+                'Accept': 'application/json'
+            }
+        })
+        const json = await res.json()
+        msg.innerText = `deleted`
+        setTimeout(() => {
+            msg.innerText = ""
+            window.location.href = '/list'
+        }, 300)
+    }
 </script>
 <h1 class="text-3xl text-theme">{item.name}</h1>
-<img src={item.img} alt={item.name} class="sm:max-w-screen lg:max-w-lg mx-2" />
+<img src={item.img} alt={item.name} class="sm:max-w-screen lg:max-w-lg mx-2 p-3" />
 <p class="text-lg pt-2 text-black dark:text-grey">{item.description}</p>
 <i class="text-darkgrey">${item.price}</i>
 {#if item.size !== ""}
@@ -79,6 +98,14 @@
     <Button type="submit" href="">Update</Button>
     <i class="text-darkgrey" id={`msg-${item._id}`}></i>
 </form>
+{#if loggedIn}
+    <form on:submit|preventDefault={deleteItem} id={item._id}>
+        <div class="mt-2">
+            <input type="hidden" value={item._id} />
+            <Button href="" type="submit">Delete Item</Button> <i class="text-darkgrey dark:text-grey" id={`del-${item._id}`}></i>
+        </div>
+    </form>
+{/if}
 <MetaTags
   title={`Oren's list - ${item.name}`}
   description={`Oren's wishlist - ${item.name}`}
