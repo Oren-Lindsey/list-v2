@@ -6,6 +6,8 @@
     import PageTransition from "$lib/components/PageTransition.svelte";
     export let url
 </script>
+<img src="/blur.svg" alt="" class="blob hidden md:inline-block" id="right">
+<img src="/blur.svg" alt="" class="blob hidden md:inline-block" id="left">
 <div class="grid place-items-center">
     <noscript>
         <h1 class="text-4xl text-theme">Please enable javacript</h1>
@@ -29,3 +31,41 @@
         <slot />
     </div>
 </PageTransition>
+<style>
+    #right {
+      right: 0;
+      transform: translate(50%, -50%);
+      animation: 20s linear infinite alternate up-to-down;
+    }
+    #left {
+      left: 0;
+      transform: translate(-50%, 50%);
+      animation: 20s linear infinite alternate down-to-up;
+    }
+    .blob {
+      position: fixed;
+      z-index: -1;
+    }
+    @keyframes up-to-down {
+      from {
+        top: 0;
+      }
+      50% {
+        right: 5%;
+      }
+      to {
+        top: 100%;
+      }
+    }
+    @keyframes down-to-up {
+      from {
+        bottom: 0;
+      }
+      50% {
+        left: 5%;
+      }
+      to {
+        bottom: 100%;
+      }
+    }
+  </style>
