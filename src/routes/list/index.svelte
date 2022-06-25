@@ -116,6 +116,7 @@
                     <p class="text-black dark:text-white">Priority: {item.ranking}/10</p>
                     <div class="my-2">
                         {#if item.link.length > 0}
+                            <p class="inline">Buy from:</p>
                             <Button type="link" href={item.link[0].url}>{item.link[0].name}</Button> {#if item.link.length > 1}<i class="inline text-darkgrey dark:text-grey dark:hover:text-white">+{item.link.length - 1} more links...</i> <a href="/item/{item._id}" target="_blank" rel="noopener noreferrer">(see all)</a>{/if}
                         {/if}
                     </div>
