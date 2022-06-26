@@ -22,6 +22,9 @@
             msg.innerText = 'updated'
             setTimeout(() => {
                 msg.innerText = ""
+                setTimeout(() => {
+                    window.location.reload()
+                }, 100)
             }, 400);
         } catch (error) {
             msg.innerText = `couldn't update :(`
@@ -102,11 +105,14 @@
 <br>
 <ul class="mx-1 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
     {#each items as item}
-            <li class="m-2 bg-transparent"> 
-                <div class="bg-grey dark:bg-reallydarkgrey border border-darkgrey dark:border-darkgrey pb-5 px-5 rounded-md w-full min-w-full break-words">
+        {#if item.checked}
+            <li class="m-4 bg-transparent"> 
+                <div class="bg-white dark:bg-extradarkgrey border border-darkgrey pb-5 px-5 rounded-md w-full min-w-full break-words">
                     <img src={item.img} alt={item.name} class="object-scale-down rounded-b-md rounded-t-none w-full rounded-md p-0 m-0" />
+                    <s class="dark:decoration-white decoration-black">
                     <h2 class="text-xl text-theme pt-2">{item.name} <a class="text-darkgrey hover:underline" href={`/item/${item._id}`}>#</a></h2>
                     <p class="text-black dark:text-white">{item.description}</p>
+                    </s>
                     <i class="text-darkgrey dark:text-grey">${item.price}</i>
                     {#if item.size !== ""}
                     <p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-white">Size: {item.size}</p>
@@ -116,8 +122,8 @@
                     <p class="text-black dark:text-white">Priority: {item.ranking}/10</p>
                     <div class="my-2">
                         {#if item.link.length > 0}
-                            <p class="inline">Buy from:</p>
-                            <Button type="link" href={item.link[0].url}>{item.link[0].name}</Button> {#if item.link.length > 1}<i class="inline text-darkgrey dark:text-grey dark:hover:text-white">+{item.link.length - 1} more links...</i> <a href="/item/{item._id}" target="_blank" rel="noopener noreferrer">(see all)</a>{/if}
+                            <p class="inline dark:text-grey text-black">Buy from:</p>
+                            <Button type="link" href={item.link[0].url}>{item.link[0].name}</Button> {#if item.link.length > 1}<i class="inline text-darkgrey dark:text-grey dark:hover:text-white">+{item.link.length - 1} more links...</i> <a class="text-black dark:text-white" href="/item/{item._id}">(see all)</a>{/if}
                         {/if}
                     </div>
                     <form class="mb-0" id={item._id} on:submit|preventDefault={updateItem}>
@@ -129,6 +135,35 @@
                     </form>
                 </div>
             </li>
+        {:else}
+        <li class="m-2 bg-transparent"> 
+            <div class="bg-grey dark:bg-reallydarkgrey border border-darkgrey pb-5 px-5 rounded-md w-full min-w-full break-words">
+                <img src={item.img} alt={item.name} class="object-scale-down rounded-b-md rounded-t-none w-full rounded-md p-0 m-0" />
+                <h2 class="text-xl text-theme pt-2">{item.name} <a class="text-darkgrey hover:underline" href={`/item/${item._id}`}>#</a></h2>
+                <p class="text-black dark:text-white">{item.description}</p>
+                <i class="text-darkgrey dark:text-grey">${item.price}</i>
+                {#if item.size !== ""}
+                <p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-white">Size: {item.size}</p>
+                {:else}
+                <p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-white">Size: N/A</p>
+                {/if}
+                <p class="text-black dark:text-white">Priority: {item.ranking}/10</p>
+                <div class="my-2">
+                    {#if item.link.length > 0}
+                        <p class="inline dark:text-grey text-black">Buy from:</p>
+                        <Button type="link" href={item.link[0].url}>{item.link[0].name}</Button> {#if item.link.length > 1}<i class="inline text-darkgrey dark:text-grey dark:hover:text-white">+{item.link.length - 1} more links...</i> <a class="text-black dark:text-white" href="/item/{item._id}" target="_blank" rel="noopener noreferrer">(see all)</a>{/if}
+                    {/if}
+                </div>
+                <form class="mb-0" id={item._id} on:submit|preventDefault={updateItem}>
+                    <input type="hidden" name="id" value={item._id} />
+                    <label for="checkbox" class="text-black dark:text-white">Claimed:</label>
+                    <input name={`checkbox-${item._id}`} id={`checkbox-${item._id}`} type="checkbox" checked={item.checked} class="accent-theme mr-1" />
+                    <Button type="submit" href="">Update</Button>
+                    <i class="text-darkgrey" id={`msg-${item._id}`}></i>
+                </form>
+            </div>
+        </li>
+        {/if}
     {/each}
 </ul>
 <MetaTags
