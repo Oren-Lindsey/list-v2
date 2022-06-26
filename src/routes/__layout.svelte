@@ -5,6 +5,30 @@
     import "../app.css";
     import PageTransition from "$lib/components/PageTransition.svelte";
     export let url
+    const codes = [
+      "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"
+    ];
+
+    let index = 0;
+    import { onMount } from 'svelte';
+ 
+    onMount(async () => {
+      document.addEventListener("keydown", (e) => {
+        const key = e.key;
+
+        if (key === codes[index]) {
+          index++;
+
+          if (index === codes.length) {
+            alert("Hurray!");
+
+            index = 0;
+          }
+        } else {
+          index = 0;
+        }
+      });
+    });
 </script>
 <img src="/blur.svg" alt="" class="blob hidden md:inline-block" id="right">
 <img src="/blur.svg" alt="" class="blob hidden md:inline-block" id="left">
@@ -31,6 +55,7 @@
         <slot />
     </div>
 </PageTransition>
+<a href="https://github.com/oren-lindsey/list-v2" class="my-2 text-darkgrey hover:text-black dark:text-grey dark:hover:text-white grid place-items-center w-screen transition ease-in-out delay-75">Made with ❤️ by Oren Lindsey</a>
 <style>
     #right {
       right: 0;
