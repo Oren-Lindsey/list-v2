@@ -3,7 +3,7 @@
     import {flip} from "svelte/animate";
     import {dndzone, SHADOW_ITEM_MARKER_PROPERTY_NAME} from "svelte-dnd-action";
     let idx = 0
-    let update = 0
+    let imgUrl = ""
     let items = [
         {id: idx++, name: `link`, url: ""}
     ];
@@ -104,7 +104,12 @@
     <button class="transition ease-in-out delay-75 bg-theme text-black font-sans rounded p-1 hover:bg-darkgrey hover:text-white dark:bg-darkgrey dark:hover:bg-extradarkgrey dark:text-white" on:click|preventDefault={addLink}>Add link</button>
     </div> 
     <label class="text-darkgrey my-2 dark:text-grey" for="img">Image url:</label>
-    <input type="text" name="img" id="img" placeholder="image link" required class="border-darkgrey border-2 bg-grey rounded-md p-1 pl-2 mb-2 dark:bg-extradarkgrey dark:text-grey dark:border-grey" />
+    <input type="text" name="img" id="img" placeholder="image link" bind:value={imgUrl} required class="border-darkgrey border-2 bg-grey rounded-md p-1 pl-2 mb-2 dark:bg-extradarkgrey dark:text-grey dark:border-grey" />
+    {#key imgUrl}
+    {#if imgUrl !== ""}
+    <img src={imgUrl} alt="preview" />
+    {/if}
+    {/key}
     <label class="text-darkgrey my-2 dark:text-grey" for="size">Size (optional):</label>
     <input type="text" name="size" id="size" placeholder="size" class="border-darkgrey border-2 bg-grey rounded-md p-1 pl-2 mb-2 dark:bg-extradarkgrey dark:text-grey dark:border-grey" />
     <label class="text-darkgrey my-2 dark:text-grey" for="size">Priority (1-10):</label>

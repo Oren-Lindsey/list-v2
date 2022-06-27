@@ -108,7 +108,7 @@
         {#if item.checked}
             <li class="m-4 bg-transparent"> 
                 <div class="bg-white dark:bg-extradarkgrey border border-darkgrey pb-5 px-5 rounded-md w-full min-w-full break-words">
-                    <img src={item.img} alt={item.name} class="object-scale-down rounded-b-md rounded-t-none w-full rounded-md p-0 m-0" />
+                    <img src={item.img} alt={item.name} class="object-scale-down rounded-b-md rounded-t-none w-full rounded-md p-0 m-0" loading="lazy" />
                     <s class="dark:decoration-white decoration-black">
                     <h2 class="text-xl text-theme pt-2">{item.name} <a class="text-darkgrey hover:underline" href={`/item/${item._id}`}>#</a></h2>
                     <p class="text-black dark:text-white">{item.description}</p>
