@@ -30,8 +30,8 @@
       });
     });
 </script>
-<img src="/blur.svg" alt="" class="blob hidden md:inline-block" id="right">
-<img src="/blur.svg" alt="" class="blob hidden md:inline-block" id="left">
+<img src="/blur.svg" alt="" class="blob hidden lg:inline-block" id="right">
+<img src="/blur.svg" alt="" class="blob hidden lg:inline-block" id="left">
 <div class="grid place-items-center">
     <noscript>
         <h1 class="text-4xl text-theme">Please enable javacript</h1>
