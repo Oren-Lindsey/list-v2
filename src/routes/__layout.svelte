@@ -30,6 +30,7 @@
       });
     });
 </script>
+<div class="min-h-screen">
 <img src="/blur.svg" alt="" class="blob hidden lg:inline-block" id="right">
 <img src="/blur.svg" alt="" class="blob hidden lg:inline-block" id="left">
 <div class="grid place-items-center">
@@ -94,3 +95,4 @@
       }
     }
   </style>
+</div>
