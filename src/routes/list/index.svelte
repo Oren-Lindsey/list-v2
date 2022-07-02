@@ -1,3 +1,6 @@
+<script context="module">
+    export const prerender = true;
+  </script>
 <script>
     import { MetaTags } from "svelte-meta-tags";
     import Button from "../../lib/components/Button.svelte";
