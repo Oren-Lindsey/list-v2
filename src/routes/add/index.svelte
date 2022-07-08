@@ -1,7 +1,7 @@
 <script>
     import Button from "../../lib/components/Button.svelte";
     import {flip} from "svelte/animate";
-    import {dndzone, SHADOW_ITEM_MARKER_PROPERTY_NAME} from "svelte-dnd-action";
+    import {dndzone} from "svelte-dnd-action";
     let idx = 0
     let imgUrl = ""
     let items = [
