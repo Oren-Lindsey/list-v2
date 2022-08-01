@@ -78,7 +78,7 @@
 <p class="underline decoration-solid decoration-theme decoration-2 text-black dark:text-grey">Size: N/A</p>
 {/if}
 <div class="mt-4 grid place-items-center">
-    <b>Links:</b>
+    <b class="text-black dark:text-grey">Links:</b>
 </div>
 <div class="mt-2 mb-4 mx-4 grid place-items-center">
 {#if item.link.length > 0}
@@ -88,7 +88,7 @@
     </div>
 {/each}
 {:else}
-<i>no links :(</i>
+<i class="text-black dark:text-grey">no links :(</i>
 {/if}
 </div>
 <form class="mb-0" id={item._id} on:submit|preventDefault={updateItem}>

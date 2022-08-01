@@ -38,7 +38,7 @@
         <h1 class="text-4xl text-theme">Please enable javacript</h1>
     </noscript>
 </div>
-<nav class="w-full top-0 grid place-items-center mt-0 bg-theme border-b-2 border-x-0 border-t-0 border-b-darkgrey dark:border-b-white">
+<nav class="w-full overflow-x-hidden top-0 grid place-items-center mt-0 bg-theme border-b-2 border-x-0 border-t-0 border-b-darkgrey dark:border-b-white">
     <div class="grid grid-cols-3 w-md place-items-center">
         <a href="/">
             <h1 class="transition ease-in-out delay-75 text-xl m-2 text-black dark:text-white rounded-md p-1 hover:bg-darkgrey hover:text-white dark:hover:bg-reallydarkgrey">Home</h1>
@@ -52,7 +52,7 @@
     </div>
 </nav>
 <PageTransition {url}>
-    <div class="grid place-items-center mx-2 my-4 place-content-center">
+    <div class="grid place-items-center mx-2 my-4 place-content-center overflow-x-hidden">
         <slot />
     </div>
 </PageTransition>
